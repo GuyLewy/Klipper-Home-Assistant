@@ -1,0 +1,384 @@
+views:
+  - theme: light-green
+    title: Temperature
+    icon: mdi:printer-3d-nozzle-heat
+    type: panel
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.cr20_hotend_actual
+                min: 0
+                max: 245
+                name: Hot End Temperature
+                needle: false
+                theme: CR-20 Pro
+              - type: gauge
+                entity: sensor.cr20_bed_actual
+                min: 0
+                max: 75
+                name: Bed Temperature
+                theme: CR-20 Pro
+              - type: gauge
+                entity: sensor.cr20_current_progress
+                min: 0
+                max: 100
+                name: Print Progress
+                theme: CR-20 Pro
+          - type: horizontal-stack
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.cr20_hotend_target
+                icon: mdi:printer-3d-nozzle-heat
+                icon_color: light-green
+                layout: vertical
+                name: Tool Target
+                primary_info: state
+                secondary_info: name
+              - type: custom:mushroom-entity-card
+                entity: sensor.cr20_bed_target
+                icon: mdi:radiator
+                icon_color: light-green
+                layout: vertical
+                name: Bed Target
+                primary_info: state
+                secondary_info: name
+              - type: custom:mushroom-entity-card
+                entity: sensor.cr20_time_remaining
+                icon_color: light-green
+                layout: vertical
+                name: Time Left
+                primary_info: state
+                secondary_info: name
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: light.cr_20_pro
+                icon: mdi:printer-3d
+                name: Cr-20 Power
+                confirmation:
+                  text: Are you sure you want to toggle printer power?
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_firmware_restart
+                  service_data: {}
+                  target: {}
+                name: Firmware Reset
+                icon: mdi:restart-alert
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                confirmation:
+                  text: >-
+                    WARNING This will stop any ongoing prints, Are you sure you
+                    want to firmware restart the printer?
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_emergency_stop
+                  service_data: {}
+                  target: {}
+                name: E-STOP
+                icon: mdi:car-brake-alert
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                confirmation:
+                  text: Are you sure you want to stop the printer?
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_cancel
+                  service_data: {}
+                  target: {}
+                name: Cancel Print
+                icon: mdi:cancel
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                confirmation:
+                  text: Are you sure you want to cancel the print?
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_pause
+                  service_data: {}
+                  target: {}
+                name: Pause Print
+                icon: mdi:pause
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                confirmation:
+                  text: Are you sure you want to pause this print?
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_resume
+                  service_data: {}
+                  target: {}
+                name: Resume Print
+                icon: mdi:play
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                confirmation:
+                  text: Are you sure you want to resume the print??
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 75px
+          - type: custom:mushroom-template-card
+            icon: mdi:camera-control
+            entity: sensor.cr_20_pro_temperature
+            icon_color: light-green
+            double_tap_action:
+              action: none
+            primary: Navigate To Controls
+            tap_action:
+              action: navigate
+              navigation_path: /3d-printing/control
+        view_layout:
+          position: main
+  - theme: CR-20 Pro
+    title: Control
+    path: control
+    type: panel
+    icon: mdi:camera-control
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_unload_filament
+                  service_data: {}
+                  target: {}
+                name: Unload
+                icon: mdi:arrow-collapse-up
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_foreward_50
+                  service_data: {}
+                  target: {}
+                name: Y Axis
+                icon: mdi:arrow-up-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_bed_level
+                  service_data: {}
+                  target: {}
+                name: Level bed
+                icon: mdi:tray
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_up_25
+                  service_data: {}
+                  target: {}
+                name: Z Axis
+                icon: mdi:arrow-up-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_left_50
+                  service_data: {}
+                  target: {}
+                name: X Axis
+                icon: mdi:arrow-left-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_home_xy
+                  service_data: {}
+                  target: {}
+                name: Home XY
+                icon: mdi:home
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_right_50
+                  service_data: {}
+                  target: {}
+                name: X Axis
+                icon: mdi:arrow-right-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_home_all
+                  service_data: {}
+                  target: {}
+                name: Home All
+                icon: mdi:home
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_load_filament
+                  service_data: {}
+                  target: {}
+                name: Load
+                icon: mdi:arrow-collapse-down
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_back_50
+                  service_data: {}
+                  target: {}
+                name: Y Axis
+                icon: mdi:arrow-down-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+              - type: custom:button-card
+              - type: custom:button-card
+                tap_action:
+                  action: call-service
+                  service: rest_command.cr20_move_down_25
+                  service_data: {}
+                  target: {}
+                name: Z Axis
+                icon: mdi:arrow-down-bold
+                show_icon: true
+                show_name: true
+                hold_action:
+                  action: none
+                color: '#96cc4a'
+                styles:
+                  card:
+                    - height: 150px
+          - camera_view: live
+            type: picture-glance
+            title: Cr-20 Pro Pi Cam
+            entities:
+              - entity: sensor.cr20_state
+            camera_image: camera.mjpeg_camera
+  - theme: Backend-selected
+    title: Cameras
+    path: cameras
+    icon: mdi:cctv
+    badges: []
+    cards:
+      - camera_view: live
+        type: picture-glance
+        title: Cr-20 Pro Pi Cam
+        entities:
+          - entity: sensor.cr20_state
+        camera_image: camera.mjpeg_camera
+title: 3D Printing
