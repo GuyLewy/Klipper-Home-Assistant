@@ -1,0 +1,49 @@
+rest_command:
+  cr20_emergency_stop:
+    url: "http://YOURIPADRESS:7125/printer/emergency_stop"
+    method: POST
+  cr20_firmware_restart:
+    url: "http://YOURIPADRESS:7125/printer/firmware_restart"
+    method: POST
+  cr20_cancel:
+    url: "http://YOURIPADRESS:7125/printer/print/cancel"
+    method: POST
+  cr20_pause:
+    url: "http://YOURIPADRESS:7125/printer/print/pause"
+    method: POST
+  cr20_resume:
+    url: "http://YOURIPADRESS:7125/printer/print/resume"
+    method: POST
+  cr20_home_all:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=G28"
+    method: POST
+  cr20_home_xy:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=G28 X Y"
+    method: POST
+  cr20_bed_level:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=G29"
+    method: POST
+  cr20_move_foreward_50:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_FOREWARD_50"
+    method: POST
+  cr20_move_back_50:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_BACKWARD_50"
+    method: POST
+  cr20_move_right_50:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_RIGHT_50"
+    method: POST
+  cr20_move_left_50:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_LEFT_50"
+    method: POST
+  cr20_move_down_25:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_DOWN_25"
+    method: POST
+  cr20_move_up_25:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=MOVE_UP_25"
+    method: POST
+  cr20_load_filament:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=LOAD_FILAMENT"
+    method: POST
+  cr20_unload_filament:
+    url: "http://YOURIPADRESS:7125/printer/gcode/script?script=UNLOAD_FILAMENT"
+    method: POST
